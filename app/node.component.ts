@@ -5,41 +5,33 @@ import { TreeService } from './tree.service';
   selector: 'node',
   templateUrl: 'app/node.component.html',
   styles:[`
-  .leftNode
+  .orNode
 {
-  content: ' ';
-  display: inline-block;
-  background: #bada55 url('app/arrow-left.png') no-repeat;
-  background-size: contain;
-  height: 25px;
-  width: 25px;
-  float:right;
+  background-color:green;
 }
-  .rightNode
+  .andNode
   {
-  content: ' ';
-  display: inline-block;
-  background: #bada55 url('app/arrow-right.png') no-repeat;
-  background-size: contain;
-  height: 25px;
-  width: 25px;
-  float:left;
+ background-color:red;
 }
 .nodeCell{
-  background-color:grey;border-style:solid;border-color:white;border-width:thick;
+  border-style:solid;border-color:white;border-width:thick;
 }
+.rootCell{
+  background-color:green;
+}
+
   `]
 })
 
 export class NodeComponent{
-  @Input() nodeItem;
+  @Input() nodeItem:any;
   constructor(private treeService : TreeService){}
 
-  delete(node){
-      this.treeService.delete(node);
+  delete(node:any){
+      this.treeService.deleteNode(node);
     }
 
-  addToNode(node){
-    this.treeService.add(node);
+  addToNode(node:any){
+    this.treeService.addNode(node);
   }
 }

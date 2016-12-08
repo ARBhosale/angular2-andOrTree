@@ -1,55 +1,97 @@
+import {Node} from './Node';
+
 export class TreeService{
 
-  child3 = {value: '3', children:<any>[]};
-  child4 = {value: '4', children:<any>[]};
+    root = new Node('root',null,'OR');
 
-  child5 = {value: '5', children:<any>[]};
-  child6 = {value: '6', children:<any>[]};
-  child1 = 
+    generateTree()
     {
-      value:'1',
-      children:[this.child3, this.child4]
-    };
-  child2 = 
-    {
-      value:'2',
-      children:[this.child5, this.child6]
-    };
-
-  tree = 
-    {
-      value:'0',
-      children:[this.child1, this.child2]
-    };
+      let child1 = new Node('child1',this.root, 'AND');
+      let child2 = new Node('child2',this.root, 'AND');
+      this.root.addChild();
+      this.root.addChild();
+    }
 
     get()
     {
-      return this.tree;
+      this.generateTree();
+      return this.root;
     }
 
-    add(node:any){
-      let val = Math.floor(Math.random()*1000+1);
-      node.children.push({value: val, children:[]});
+    getTree1(){
+     let root = new Node('root',null,'OR');
+     root.addChild();
+     root.addChild();
+     root.addChild();
+     root.children[0].addChild();
+     root.children[0].addChild();
+     root.children[1].addChild();
+     root.children[1].addChild();
+     root.children[2].addChild();
+     root.children[2].addChild();
+     return root;
     }
 
-    delete(node:any)
+    getTree2(){
+     let root = new Node('root',null,'OR');
+     root.addChild();
+     root.addChild();
+     root.addChild();
+     root.children[0].addChild();
+     root.children[0].addChild();
+     root.children[1].addChild();
+     root.children[1].addChild();
+     root.children[2].addChild();
+     root.children[2].addChild();
+     root.children[0].children[0].addChild();
+     root.children[0].children[1].addChild();
+     root.children[1].children[0].addChild();
+     root.children[1].children[1].addChild();
+     root.children[2].children[0].addChild();
+     root.children[2].children[1].addChild();
+     return root;
+    }
+
+    getTree3(){
+     let root = new Node('root',null,'OR');
+     root.addChild();
+     root.addChild();
+     root.addChild();
+     root.children[0].addChild();
+     root.children[0].addChild();
+     root.children[1].addChild();
+     root.children[1].addChild();
+     root.children[2].addChild();
+     root.children[2].addChild();
+     root.children[0].addChild();
+     root.children[0].addChild();
+     root.children[1].addChild();
+     root.children[1].addChild();
+     root.children[2].addChild();
+     root.children[2].addChild();
+     root.children[0].children[0].addChild();
+     root.children[0].children[1].addChild();
+     root.children[1].children[0].addChild();
+     root.children[1].children[1].addChild();
+     root.children[2].children[0].addChild();
+     root.children[2].children[1].addChild();
+     root.children[0].children[0].addChild();
+     root.children[0].children[1].addChild();
+     root.children[1].children[0].addChild();
+     root.children[1].children[1].addChild();
+     root.children[2].children[0].addChild();
+     root.children[2].children[1].addChild();
+     return root;
+    }
+
+    addNode(node: Node)
     {
-      if(node.value == this.tree.value)
-        return this.tree = {value:'', children:<any>[]};
-      this.deleteChild(this.tree, node);
-      
+      node.addChild();
     }
 
-    deleteChild(node:any, nodeToDelete:any)
+    deleteNode(node: Node)
     {
-      if(!node.children)
-        return;
-      for(let i=0;i<node.children.length;i++)
-      {
-        if(node.children[i].value == nodeToDelete.value)
-          return node.children.splice(i,1);
-        else
-          this.deleteChild(node.children[i], nodeToDelete);
-      }
+      let parentNode = node.parent;
+      parentNode.removeChild(node);
     }
-}
+} 

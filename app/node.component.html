@@ -1,19 +1,20 @@
-
-<table>
+<button (click)="nodeItem.toggleVisibiliy($event.target)" >{{nodeItem.isVisible?'-':'+'}}</button>
+<table *ngIf="nodeItem.isVisible" style="text-align:center;">
+  
     <tr style="text-align:center;">
-      <td colspan="2">
-        <div class="nodeCell">{{nodeItem.value}}</div>
+      <td [attr.colspan]="nodeItem.children.length+1">
+        <div class="nodeCell" [ngClass]="{'rootCell':!nodeItem.parent,'orNode':nodeItem.type=='OR','andNode':nodeItem.type=='AND'}">
+          <input style = "width:40px;text-align:center;"
+           placeholder = "new" [value]="nodeItem.label" (input)="nodeItem.label = $event.target.value">
+        </div>
         <div class="nodeCell">
-          <button 
-          *ngIf="(nodeItem.children&&nodeItem.children.length<2)||(!nodeItem.children)"
-          (click)="addToNode(nodeItem)">Add</button>
-          <button *ngIf="nodeItem.value!=0"(click)="delete(nodeItem)">Delete</button>
+          <button (click)="addToNode(nodeItem)">Add</button>
+          <button *ngIf="nodeItem.parent"(click)="delete(nodeItem)">Delete</button>
         </div>
       </td>
     </tr>
     <tr *ngIf="nodeItem.children.length > 0">
       <td *ngFor="let child of nodeItem.children; let isEven=even;"colspan="1">
-        <div [ngClass]="{'leftNode':isEven,'rightNode':!isEven}"></div>
         <node [nodeItem]="child">
         </node>
         

@@ -1,4 +1,20 @@
 <div>
-  <node [nodeItem]="tree">
+  <h3>Tree 1</h3>
+  <node [nodeItem]="tree1">
   </node>
+  <button (click)="submitTree(tree1)">Submit</button>
+</div>
+
+<div>
+  <h3>Tree 2</h3>
+  <node [nodeItem]="tree2">
+  </node>
+  <button (click)="submitTree(tree2)">Submit</button>
+</div>
+
+<div>
+  <h3>Tree 3</h3>
+  <node [nodeItem]="tree3">
+  </node>
+  <button (click)="submitTree(tree3)">Submit</button>
 </div>
