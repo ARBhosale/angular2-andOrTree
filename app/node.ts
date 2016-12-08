@@ -15,18 +15,18 @@ export class Node{
     this.isVisible = parent ? true : false;
   }
 
-  public addChild(){
+  public addChild(): void{
     let newChildNodeType = this.type=='AND'?'OR':'AND';
     let newChild = new Node('', this, newChildNodeType);
     this.children.push(newChild);
   }
 
-  public removeChild(child : Node){
+  public removeChild(child : Node): void{
     let index = this.children.indexOf(child);
     this.children.splice(index,1);
   }
 
-  public toggleVisibiliy(button){
+  public toggleVisibiliy(): void{
     this.isVisible = !this.isVisible;
   }
 }

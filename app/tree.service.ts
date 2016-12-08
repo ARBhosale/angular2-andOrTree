@@ -2,23 +2,7 @@ import {Node} from './Node';
 
 export class TreeService{
 
-    root = new Node('root',null,'OR');
-
-    generateTree()
-    {
-      let child1 = new Node('child1',this.root, 'AND');
-      let child2 = new Node('child2',this.root, 'AND');
-      this.root.addChild();
-      this.root.addChild();
-    }
-
-    get()
-    {
-      this.generateTree();
-      return this.root;
-    }
-
-    getTree1(){
+    getTree1(): Node{
      let root = new Node('root',null,'OR');
      root.addChild();
      root.addChild();
@@ -32,7 +16,7 @@ export class TreeService{
      return root;
     }
 
-    getTree2(){
+    getTree2(): Node{
      let root = new Node('root',null,'OR');
      root.addChild();
      root.addChild();
@@ -52,7 +36,7 @@ export class TreeService{
      return root;
     }
 
-    getTree3(){
+    getTree3(): Node{
      let root = new Node('root',null,'OR');
      root.addChild();
      root.addChild();
@@ -84,13 +68,11 @@ export class TreeService{
      return root;
     }
 
-    addNode(node: Node)
-    {
+    addNode(node: Node): void{
       node.addChild();
     }
 
-    deleteNode(node: Node)
-    {
+    deleteNode(node: Node): void{
       let parentNode = node.parent;
       parentNode.removeChild(node);
     }

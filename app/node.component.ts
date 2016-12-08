@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TreeService } from './tree.service';
+import { Node } from './node';
 
 @Component({
   selector: 'node',
@@ -24,14 +25,14 @@ import { TreeService } from './tree.service';
 })
 
 export class NodeComponent{
-  @Input() nodeItem:any;
+  @Input() nodeItem: Node;
   constructor(private treeService : TreeService){}
 
-  delete(node:any){
+  delete(node: Node): void{
       this.treeService.deleteNode(node);
     }
 
-  addToNode(node:any){
+  addToNode(node: Node): void{
     this.treeService.addNode(node);
   }
 }
