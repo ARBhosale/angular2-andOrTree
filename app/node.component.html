@@ -1,0 +1,22 @@
+
+<table>
+    <tr style="text-align:center;">
+      <td colspan="2">
+        <div class="nodeCell">{{nodeItem.value}}</div>
+        <div class="nodeCell">
+          <button 
+          *ngIf="(nodeItem.children&&nodeItem.children.length<2)||(!nodeItem.children)"
+          (click)="addToNode(nodeItem)">Add</button>
+          <button *ngIf="nodeItem.value!=0"(click)="delete(nodeItem)">Delete</button>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="nodeItem.children.length > 0">
+      <td *ngFor="let child of nodeItem.children; let isEven=even;"colspan="1">
+        <div [ngClass]="{'leftNode':isEven,'rightNode':!isEven}"></div>
+        <node [nodeItem]="child">
+        </node>
+        
+      </td>
+    </tr>
+</table>
