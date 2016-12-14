@@ -24,10 +24,10 @@ export class TreeComponent{
       this.tree1 = this.treeService.getTree1();
       this.tree2 = this.treeService.getTree2();
       this.tree3 = this.treeService.getTree3();    
-  }
+    }
 
-  submitTree(tree: Node){
-    console.log(tree);
-  }
+    submitTree(tree: Node){
+      console.log(tree);
+    }
     
 }
