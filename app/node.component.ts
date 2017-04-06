@@ -5,7 +5,7 @@ import { Node } from './node';
 @Component({
   selector: 'node',
   templateUrl: 'app/node.component.html',
-  styles:[`
+  styles: [`
   .orNode
 {
   background-color:green;
@@ -24,15 +24,15 @@ import { Node } from './node';
   `]
 })
 
-export class NodeComponent{
+export class NodeComponent {
   @Input() nodeItem: Node;
-  constructor(private treeService : TreeService){}
+  constructor(private treeService: TreeService) { }
 
-  delete(node: Node): void{
-      this.treeService.deleteNode(node);
-    }
+  delete(node: Node): void {
+    this.treeService.deleteNode(node);
+  }
 
-  addToNode(node: Node): void{
+  addToNode(node: Node): void {
     this.treeService.addNode(node);
   }
 }

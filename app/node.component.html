@@ -1,27 +1,24 @@
-<button (click)="nodeItem.toggleVisibiliy($event.target)" >{{nodeItem.isVisible?'-':'+'}}</button>
+<button (click)="nodeItem.toggleVisibiliy($event.target)">{{nodeItem.isExpanded?'-':'+'}}</button>
+<table *ngIf="nodeItem.isExpanded" style="text-align:center;">
 
-<table *ngIf="nodeItem.isVisible" style="text-align:center;">
-  
-    <tr style="text-align:center;">
-      <td [attr.colspan]="nodeItem.children.length+1">
-        <div class="nodeCell"
-        [ngClass]="{'rootCell':!nodeItem.parent,'orNode':nodeItem.type=='OR','andNode':nodeItem.type=='AND'}">
-          <input style = "width:40px;text-align:center;"
-           placeholder = "new"
-           [value]="nodeItem.label"
-           (input)="nodeItem.label = $event.target.value">
-        </div>
-        <div class="nodeCell">
-          <button (click)="addToNode(nodeItem)">Add</button>
-          <button *ngIf="nodeItem.parent"(click)="delete(nodeItem)">Delete</button>
-        </div>
-      </td>
-    </tr>
-    <tr *ngIf="nodeItem.children.length > 0">
-      <td *ngFor="let child of nodeItem.children" colspan="1">
-        <node [nodeItem]="child">
-        </node>
-        
-      </td>
-    </tr>
+  <tr style="text-align:center;">
+    <td [attr.colspan]="nodeItem.children.length+1">
+      <div class="nodeCell" [ngClass]="{'rootCell':!nodeItem.parent,'orNode':nodeItem.type=='OR','andNode':nodeItem.type=='AND'}">
+        <input *ngIf="!nodeItem.parent" style="width:40px;text-align:center;color:red;" placeholder="new" [value]="nodeItem.label" (input)="nodeItem.label = $event.target.value">
+        <input *ngIf=" nodeItem.parent&&nodeItem.type=='OR'" style="width:40px;text-align:center;color:red;" placeholder="new" [value]="nodeItem.label" (input)="nodeItem.label = $event.target.value">
+        <input *ngIf=" nodeItem.parent&&nodeItem.type=='AND'" style="width:40px;text-align:center;color:green;" placeholder="new" [value]="nodeItem.label" (input)="nodeItem.label = $event.target.value">
+      </div>
+      <div class="nodeCell">
+        <button (click)="addToNode(nodeItem)">Add</button>
+        <button *ngIf="nodeItem.parent" (click)="delete(nodeItem)">Delete</button>
+      </div>
+    </td>
+  </tr>
+  <tr *ngIf="nodeItem.children.length > 0">
+    <td *ngFor="let child of nodeItem.children" colspan="1">
+      <node [nodeItem]="child">
+      </node>
+
+    </td>
+  </tr>
 </table>

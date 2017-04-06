@@ -1,20 +1,26 @@
-<div>
+<div style="padding:20px;">
   <h3>Tree 1</h3>
   <node [nodeItem]="tree1">
   </node>
   <button (click)="submitTree(tree1)">Submit</button>
 </div>
 
-<div>
+<div>Number of nodes: {{tree1.numberOfNodes}}</div>
+
+<div style="padding:20px;">
   <h3>Tree 2</h3>
   <node [nodeItem]="tree2">
   </node>
   <button (click)="submitTree(tree2)">Submit</button>
 </div>
 
-<div>
+<div>Number of nodes: {{tree2.numberOfNodes}}</div>
+
+<div style="padding:20px;">
   <h3>Tree 3</h3>
   <node [nodeItem]="tree3">
   </node>
   <button (click)="submitTree(tree3)">Submit</button>
 </div>
+
+<div>Number of nodes: {{tree3.numberOfNodes}}</div>
